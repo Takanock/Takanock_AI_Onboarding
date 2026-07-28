@@ -20,6 +20,20 @@
   .logo i{font-size:20px;color:var(--coral)}
   .logo-brand{color:var(--coral)}
   .header-sub{font-size:13px;color:rgba(255,255,255,0.55);border-left:1px solid rgba(255,255,255,0.2);padding-left:1rem;margin-left:0.5rem}
+  .search-wrap{position:relative;flex:1;max-width:360px}
+  .search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:15px;color:rgba(255,255,255,0.45);pointer-events:none}
+  .search-input{width:100%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:7px 12px 7px 34px;font-size:13px;color:var(--white);outline:none;transition:all 0.15s}
+  .search-input::placeholder{color:rgba(255,255,255,0.4)}
+  .search-input:focus{background:rgba(255,255,255,0.14);border-color:var(--coral)}
+  .search-results{display:none;position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--white);border-radius:10px;box-shadow:0 8px 24px rgba(13,31,76,0.25);max-height:360px;overflow-y:auto;z-index:150}
+  .search-results.open{display:block}
+  .search-result{display:flex;align-items:center;gap:10px;padding:10px 12px;cursor:pointer;border-bottom:0.5px solid var(--border)}
+  .search-result:last-child{border-bottom:none}
+  .search-result:hover,.search-result.active-result{background:var(--cream)}
+  .search-result i{font-size:16px;color:var(--coral);flex-shrink:0}
+  .search-result-title{font-size:13px;font-weight:600;color:var(--navy)}
+  .search-result-desc{font-size:11px;color:var(--text-muted);margin-top:1px}
+  .search-empty{padding:14px 12px;font-size:13px;color:var(--text-muted);text-align:center}
   .layout{display:flex;flex:1}
   nav{width:var(--sidebar-w);background:var(--navy);padding:1rem 0;position:sticky;top:var(--top-h);height:calc(100vh - var(--top-h));overflow-y:auto;flex-shrink:0}
   .nav-section-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.35);padding:0.85rem 1.25rem 0.35rem}
@@ -87,12 +101,18 @@
     nav.open{transform:translateX(0)}
     .nav-overlay.open{display:block}
     main{padding:1.25rem}
+    .search-wrap{max-width:none}
 }
 </style>
 </head>
 <body>
 <header>
   <div class="logo"><i class="ti ti-sparkles"></i><span><span class="logo-brand">takanock</span> AI Learning Hub</span></div>
+  <div class="search-wrap" id="searchWrap">
+    <i class="ti ti-search search-icon"></i>
+    <input type="text" id="globalSearch" class="search-input" placeholder="Search the hub..." autocomplete="off" oninput="handleSearchInput(this.value)" onkeydown="handleSearchKeydown(event)">
+    <div class="search-results" id="searchResults"></div>
+  </div>
  <button class="hamburger" onclick="toggleNav()" aria-label="Toggle navigation">
   <i class="ti ti-menu-2"></i>
 </button>
@@ -103,12 +123,18 @@
     <div class="nav-section-label">Start here</div>
     <div class="nav-item active" onclick="showPage('home',this)"><i class="ti ti-home"></i> Home</div>
 
+    <div class="nav-section-label">Takanock Resources</div>
+    <div class="nav-item" onclick="showPage('asktakanock',this)"><i class="ti ti-message-chatbot"></i> Ask Takanock</div>
+    <div class="nav-item" onclick="showPage('ai101',this)"><i class="ti ti-clipboard-list"></i> AI 101: Automation Intake</div>
+    <div class="nav-item" onclick="showPage('skills',this)"><i class="ti ti-sparkles"></i> Company Skills</div>
+    <div class="nav-item" onclick="showPage('help',this)"><i class="ti ti-help-circle"></i> Help</div>
+
     <div class="nav-section-label">Claude tools</div>
     <div class="nav-item" onclick="showPage('chat',this)"><i class="ti ti-message-circle"></i> Claude Chat</div>
     <div class="nav-item" onclick="showPage('cowork',this)"><i class="ti ti-users"></i> Cowork</div>
     <div class="nav-item" onclick="showPage('code',this)"><i class="ti ti-code"></i> Claude Code</div>
     <div class="nav-item" onclick="showPage('design',this)"><i class="ti ti-palette"></i> Claude Design</div>
-   
+
    <div class="nav-item" onclick="showPage('models',this)"><i class="ti ti-cpu"></i> Claude Models</div>
     <div class="nav-item" onclick="showPage('projects',this)"><i class="ti ti-folder"></i> Projects</div>
     <div class="nav-item" onclick="showPage('customize',this)"><i class="ti ti-adjustments"></i> Customize</div>
@@ -116,12 +142,6 @@
     <div class="nav-section-label">AI concepts</div>
     <div class="nav-item" onclick="showPage('agents',this)"><i class="ti ti-robot"></i> AI Agents</div>
     <div class="nav-item" onclick="showPage('workflows',this)"><i class="ti ti-git-branch"></i> Automating Workflows</div>
-
-    <div class="nav-section-label">Takanock Resources</div>
-    <div class="nav-item" onclick="showPage('asktakanock',this)"><i class="ti ti-message-chatbot"></i> Ask Takanock</div>
-    <div class="nav-item" onclick="showPage('ai101',this)"><i class="ti ti-clipboard-list"></i> AI 101: Automation Intake</div>
-    <div class="nav-item" onclick="showPage('skills',this)"><i class="ti ti-sparkles"></i> Company Skills</div>
-    <div class="nav-item" onclick="showPage('help',this)"><i class="ti ti-help-circle"></i> Help</div>
   </nav>
 
   <main>
@@ -133,19 +153,6 @@
         
         <p style="margin-top:10px"><strong>Claude</strong>, a large language model (LLM), is Anthropic's AI assistant. An LLM is an AI system trained on vast amounts of text to understand and generate human-like language.</p>
         <div class="tip tip-warn"><strong>Heads up:</strong> Claude can be wrong. It's worth double-checking important facts, numbers, and sources before you rely on them.</div>
-      </div>
-      <div class="card-grid">
-        <div class="card" onclick="showPage('chat',getNavItem('chat'))"><i class="ti ti-message-circle"></i><h3>Claude Chat</h3><p>Prompting basics and tips</p></div>
-        <div class="card" onclick="showPage('cowork',getNavItem('cowork'))"><i class="ti ti-users"></i><h3>Cowork</h3><p>Collaborate with AI on your desktop</p></div>
-        <div class="card" onclick="showPage('code',getNavItem('code'))"><i class="ti ti-code"></i><h3>Claude Code</h3><p>AI-powered coding assistant</p></div>
-        <div class="card" onclick="showPage('design',getNavItem('design'))"><i class="ti ti-palette"></i><h3>Claude Design</h3><p>AI-powered designs, presentation &amp; documents</p></div>
-    
-       <div class="card" onclick="showPage('models',getNavItem('models'))"><i class="ti ti-cpu"></i><h3>Claude Models</h3><p>Which model to use, and when</p></div>
-        <div class="card" onclick="showPage('projects',getNavItem('projects'))"><i class="ti ti-folder"></i><h3>Projects</h3><p>Organize and share your AI work</p></div>
-        <div class="card" onclick="showPage('customize',getNavItem('customize'))"><i class="ti ti-adjustments"></i><h3>Customize</h3><p>Skills, connectors &amp; preferences</p></div>
-        <div class="card" onclick="showPage('agents',getNavItem('agents'))"><i class="ti ti-robot"></i><h3>AI Agents</h3><p>Autonomous multi-step AI tasks</p></div>
-        <div class="card" onclick="showPage('workflows',getNavItem('workflows'))"><i class="ti ti-git-branch"></i><h3>Workflows</h3><p>Automate with AI tools</p></div>
-
       </div>
       <div style="margin-bottom:2rem">
         <h2 style="font-size:14px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.75rem">Takanock Resources</h2>
@@ -159,6 +166,19 @@
           <i class="ti ti-device-desktop" style="color:var(--coral);margin-right:6px"></i>
           <strong>Visual Learner?</strong> <a href="https://takanock-guide-deploy.vercel.app/" target="_blank" style="color:var(--coral);text-decoration:underline">Click here for a Claude dashboard walkthrough</a>
         </div>
+      </div>
+      <div class="card-grid">
+        <div class="card" onclick="showPage('chat',getNavItem('chat'))"><i class="ti ti-message-circle"></i><h3>Claude Chat</h3><p>Prompting basics and tips</p></div>
+        <div class="card" onclick="showPage('cowork',getNavItem('cowork'))"><i class="ti ti-users"></i><h3>Cowork</h3><p>Collaborate with AI on your desktop</p></div>
+        <div class="card" onclick="showPage('code',getNavItem('code'))"><i class="ti ti-code"></i><h3>Claude Code</h3><p>AI-powered coding assistant</p></div>
+        <div class="card" onclick="showPage('design',getNavItem('design'))"><i class="ti ti-palette"></i><h3>Claude Design</h3><p>AI-powered designs, presentation &amp; documents</p></div>
+
+       <div class="card" onclick="showPage('models',getNavItem('models'))"><i class="ti ti-cpu"></i><h3>Claude Models</h3><p>Which model to use, and when</p></div>
+        <div class="card" onclick="showPage('projects',getNavItem('projects'))"><i class="ti ti-folder"></i><h3>Projects</h3><p>Organize and share your AI work</p></div>
+        <div class="card" onclick="showPage('customize',getNavItem('customize'))"><i class="ti ti-adjustments"></i><h3>Customize</h3><p>Skills, connectors &amp; preferences</p></div>
+        <div class="card" onclick="showPage('agents',getNavItem('agents'))"><i class="ti ti-robot"></i><h3>AI Agents</h3><p>Autonomous multi-step AI tasks</p></div>
+        <div class="card" onclick="showPage('workflows',getNavItem('workflows'))"><i class="ti ti-git-branch"></i><h3>Workflows</h3><p>Automate with AI tools</p></div>
+
       </div>
     </div>
 
@@ -556,6 +576,8 @@
     <!-- COMPANY SKILLS -->
     <div class="page" id="page-skills">
       <div class="page-header"><span class="tag tag-company">Takanock</span><h1>Company Skills</h1><p>Takanock-specific Claude skills available to all employees. Invoke them directly in Claude Chat by typing the skill name.</p></div>
+
+      <h2 style="font-size:14px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.75rem"><i class="ti ti-apps" style="color:var(--coral);margin-right:6px"></i>General &mdash; not tied to a specific app</h2>
       <div class="section"><h2>/automation-intake</h2>
         <div class="tip tip-navy"><strong>/automation-intake</strong> walks you through submitting an automation request to the AI team step by step. Once complete, your request is automatically sent to the AI Workstream Tracker in Airtable where Ivan and the AI Interns will begin building it.</div>
         <h3>How to invoke it</h3>
@@ -566,6 +588,7 @@
         </div>
         <div class="example"><div class="example-label">Full walkthrough</div>See the <strong>AI 101: Automation Intake</strong> tab under Takanock Resources for the complete step-by-step guide.</div>
       </div>
+      <h2 style="font-size:14px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin:1.5rem 0 0.75rem"><i class="ti ti-presentation" style="color:var(--coral);margin-right:6px"></i>PowerPoint</h2>
       <div class="section"><h2>/schedule-slide</h2>
         <div class="tip tip-navy"><strong>/schedule-slide</strong> pulls live schedule data from your project file and builds or refreshes a schedule slide in PowerPoint &mdash; no copy-pasting or manual re-keying. Your deck stays in sync with the actual project file.</div>
         <h3>Two modes</h3>
@@ -640,6 +663,95 @@
   function getNavItem(id) {
     return document.querySelector('.nav-item[onclick*="\''+id+'\'"]');
   }
+
+  // ── Global search ──────────────────────────────────────────────────────────
+  let searchIndex = [];
+  let activeResultIndex = -1;
+
+  function buildSearchIndex() {
+    searchIndex = [];
+    document.querySelectorAll('.page').forEach(page => {
+      const id = page.id.replace('page-', '');
+      const titleEl = page.querySelector('.page-header h1, .hero h1');
+      const title = titleEl ? titleEl.textContent.trim() : id;
+      const descEl = page.querySelector('.page-header p, .hero p');
+      const desc = descEl ? descEl.textContent.trim() : '';
+      const navItem = getNavItem(id);
+      const iconSource = navItem ? navItem.querySelector('i') : page.querySelector('.page-header i');
+      const iconClass = iconSource ? iconSource.className : 'ti ti-file-text';
+      searchIndex.push({ id, title, desc, iconClass });
+    });
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function handleSearchInput(value) {
+    const q = value.trim().toLowerCase();
+    const resultsEl = document.getElementById('searchResults');
+    activeResultIndex = -1;
+    if (!q) { resultsEl.classList.remove('open'); resultsEl.innerHTML = ''; return; }
+    const matches = searchIndex.filter(p =>
+      p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)
+    ).slice(0, 8);
+    if (!matches.length) {
+      resultsEl.innerHTML = '<div class="search-empty">No matches for "' + escapeHtml(value) + '"</div>';
+      resultsEl.classList.add('open');
+      return;
+    }
+    resultsEl.innerHTML = matches.map(m =>
+      `<div class="search-result" data-id="${m.id}" onclick="selectSearchResult('${m.id}')">
+         <i class="${m.iconClass}"></i>
+         <div><div class="search-result-title">${escapeHtml(m.title)}</div>${m.desc ? `<div class="search-result-desc">${escapeHtml(m.desc)}</div>` : ''}</div>
+       </div>`
+    ).join('');
+    resultsEl.classList.add('open');
+  }
+
+  function selectSearchResult(id) {
+    showPage(id, getNavItem(id));
+    document.getElementById('globalSearch').value = '';
+    document.getElementById('searchResults').classList.remove('open');
+    document.getElementById('searchResults').innerHTML = '';
+  }
+
+  function updateActiveResult(items) {
+    items.forEach((it, i) => it.classList.toggle('active-result', i === activeResultIndex));
+  }
+
+  function handleSearchKeydown(e) {
+    const resultsEl = document.getElementById('searchResults');
+    const items = Array.from(resultsEl.querySelectorAll('.search-result'));
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (!items.length) return;
+      activeResultIndex = (activeResultIndex + 1) % items.length;
+      updateActiveResult(items);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (!items.length) return;
+      activeResultIndex = (activeResultIndex - 1 + items.length) % items.length;
+      updateActiveResult(items);
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (items.length) items[activeResultIndex >= 0 ? activeResultIndex : 0].click();
+    } else if (e.key === 'Escape') {
+      e.target.value = '';
+      resultsEl.classList.remove('open');
+      resultsEl.innerHTML = '';
+    }
+  }
+
+  document.addEventListener('click', (e) => {
+    const wrap = document.getElementById('searchWrap');
+    if (wrap && !wrap.contains(e.target)) {
+      document.getElementById('searchResults').classList.remove('open');
+    }
+  });
+
+  buildSearchIndex();
+
   function showPage(id, el) {
     document.querySelector('nav').classList.remove('open');
     document.getElementById('nav-overlay').classList.remove('open');
