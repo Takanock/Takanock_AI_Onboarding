@@ -113,7 +113,6 @@
     <div class="nav-item" onclick="showPage('asktakanock',this)"><i class="ti ti-message-chatbot"></i> Ask Takanock</div>
     <div class="nav-item" onclick="showPage('ai101',this)"><i class="ti ti-clipboard-list"></i> AI 101: Automation Intake</div>
     <div class="nav-item" onclick="showPage('skills',this)"><i class="ti ti-sparkles"></i> Company Skills</div>
-    <div class="nav-item" onclick="showPage('help',this)"><i class="ti ti-help-circle"></i> Help</div>
 
     <div class="nav-section-label">Claude tools</div>
     <div class="nav-item" onclick="showPage('chat',this)"><i class="ti ti-message-circle"></i> Claude Chat</div>
@@ -128,6 +127,8 @@
     <div class="nav-section-label">AI concepts</div>
     <div class="nav-item" onclick="showPage('agents',this)"><i class="ti ti-robot"></i> AI Agents</div>
     <div class="nav-item" onclick="showPage('workflows',this)"><i class="ti ti-git-branch"></i> Automating Workflows</div>
+
+    <div class="nav-item" onclick="showPage('help',this)"><i class="ti ti-help-circle"></i> Help</div>
   </nav>
 
   <main>
@@ -148,10 +149,6 @@
           <div class="card" onclick="showPage('ai101',getNavItem('ai101'))"><i class="ti ti-clipboard-list"></i><h3>AI 101: Automation Intake</h3><p>Submit an automation request</p></div>
           <div class="card" onclick="showPage('support',getNavItem('support'))"><i class="ti ti-headset"></i><h3>Questions &amp; Support</h3><p>Reach out to the AI team</p></div>
         </div>
-        <div style="margin-top:1rem;padding:0.85rem 1rem;background:var(--cream-dark);border-radius:8px;border-left:3px solid var(--coral);font-size:14px;color:var(--text-secondary)">
-          <i class="ti ti-device-desktop" style="color:var(--coral);margin-right:6px"></i>
-          <strong>Visual Learner?</strong> <a href="https://takanock-guide-deploy.vercel.app/" target="_blank" style="color:var(--coral);text-decoration:underline">Click here for a Claude dashboard walkthrough</a>
-        </div>
       </div>
       <div class="card-grid">
         <div class="card" onclick="showPage('chat',getNavItem('chat'))"><i class="ti ti-message-circle"></i><h3>Claude Chat</h3><p>Prompting basics and tips</p></div>
@@ -165,6 +162,10 @@
         <div class="card" onclick="showPage('agents',getNavItem('agents'))"><i class="ti ti-robot"></i><h3>AI Agents</h3><p>Autonomous multi-step AI tasks</p></div>
         <div class="card" onclick="showPage('workflows',getNavItem('workflows'))"><i class="ti ti-git-branch"></i><h3>Workflows</h3><p>Automate with AI tools</p></div>
 
+      </div>
+      <div style="margin-top:1rem;padding:0.85rem 1rem;background:var(--cream-dark);border-radius:8px;border-left:3px solid var(--coral);font-size:14px;color:var(--text-secondary)">
+        <i class="ti ti-device-desktop" style="color:var(--coral);margin-right:6px"></i>
+        <strong>Visual Learner?</strong> <a href="https://takanock-guide-deploy.vercel.app/" target="_blank" style="color:var(--coral);text-decoration:underline">Click here for a Claude dashboard walkthrough</a>
       </div>
     </div>
 
@@ -804,8 +805,9 @@ document.getElementById(thinkingId).style.color = 'var(--text-secondary)';
   messages.scrollTop = messages.scrollHeight;
 }
 </script>
- <div onclick="showPage('help', getNavItem('help'))" style="position:fixed;bottom:1.5rem;right:1.5rem;width:52px;height:52px;background:var(--coral);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 12px rgba(232,80,42,0.4);z-index:200;transition:transform 0.15s" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-  <i class="ti ti-help-circle" style="font-size:24px;color:var(--white)"></i>
+ <div onclick="showPage('help', getNavItem('help'))" style="position:fixed;bottom:1.5rem;right:1.5rem;height:48px;padding:0 1.1rem;background:var(--coral);border-radius:24px;display:flex;align-items:center;gap:8px;cursor:pointer;box-shadow:0 4px 12px rgba(232,80,42,0.4);z-index:200;transition:transform 0.15s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+  <span style="color:var(--white);font-weight:600;font-size:14px">Help</span>
+  <i class="ti ti-help-circle" style="font-size:22px;color:var(--white)"></i>
 </div>
 </body>
 </html>
