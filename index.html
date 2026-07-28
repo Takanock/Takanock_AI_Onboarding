@@ -20,6 +20,22 @@
   .logo i{font-size:20px;color:var(--coral)}
   .logo-brand{color:var(--coral)}
   .header-sub{font-size:13px;color:rgba(255,255,255,0.55);border-left:1px solid rgba(255,255,255,0.2);padding-left:1rem;margin-left:0.5rem}
+  .header-search{position:relative;margin-left:auto;flex:1 1 320px;max-width:340px;min-width:0}
+  .header-search>i{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:16px;color:rgba(255,255,255,0.5);pointer-events:none}
+  .header-search input{width:100%;height:36px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);border-radius:8px;padding:0 12px 0 34px;font-size:13px;color:var(--white);outline:none;transition:background 0.15s,border-color 0.15s}
+  .header-search input::placeholder{color:rgba(255,255,255,0.45)}
+  .header-search input:focus{background:rgba(255,255,255,0.16);border-color:var(--coral)}
+  .search-results{display:none;position:absolute;top:calc(100% + 8px);left:0;right:0;background:var(--white);border-radius:10px;box-shadow:0 8px 24px rgba(13,31,76,0.28);max-height:60vh;overflow-y:auto;z-index:150}
+  .search-results.open{display:block}
+  .search-result{display:flex;flex-direction:column;gap:3px;padding:0.6rem 0.85rem;cursor:pointer;border-bottom:0.5px solid var(--border)}
+  .search-result:last-child{border-bottom:none}
+  .search-result:hover,.search-result.active{background:var(--cream)}
+  .search-result-page{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--coral)}
+  .search-result-snippet{font-size:13px;color:var(--text-secondary);line-height:1.4}
+  .search-result-snippet mark{background:rgba(232,80,42,0.18);color:var(--navy);font-weight:600;border-radius:2px}
+  .search-empty{padding:0.85rem;font-size:13px;color:var(--text-muted)}
+  .search-hit-flash{box-shadow:0 0 0 3px var(--coral);border-radius:8px;transition:box-shadow 1.1s ease}
+  .logo-full{white-space:nowrap}
   .layout{display:flex;flex:1}
   nav{width:var(--sidebar-w);background:var(--navy);padding:1rem 0;position:sticky;top:var(--top-h);height:calc(100vh - var(--top-h));overflow-y:auto;flex-shrink:0}
   .nav-section-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.35);padding:0.85rem 1.25rem 0.35rem}
@@ -62,10 +78,11 @@
   .step::before{counter-increment:step;content:counter(step);background:var(--coral);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0;margin-top:1px}
   .example{background:var(--cream);border:0.5px solid var(--border);border-left:3px solid var(--slate);border-radius:0 8px 8px 0;padding:0.875rem 1rem;font-size:13px;color:var(--text-secondary);margin:0.75rem 0;line-height:1.6}
   .example-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--slate);margin-bottom:6px}
-  .hero{background:var(--navy);border-radius:12px;padding:2rem 2.5rem;margin-bottom:2rem;position:relative;overflow:hidden}
+  .hero{background:var(--navy);border-radius:12px;padding:2rem 2.5rem;margin-bottom:2rem;position:relative;overflow:hidden;text-align:center}
   .hero::after{content:'';position:absolute;bottom:0;right:0;width:120px;height:100%;background:var(--coral);opacity:0.12;clip-path:polygon(60% 0,100% 0,100% 100%,0% 100%)}
   .hero h1{font-size:26px;font-weight:600;color:var(--white);margin-bottom:8px}
-  .hero p{font-size:15px;color:rgba(255,255,255,0.75);max-width:540px;line-height:1.6}
+  .hero p{font-size:15px;color:rgba(255,255,255,0.75);max-width:540px;line-height:1.6;margin-left:auto;margin-right:auto}
+  .hero .tip{text-align:left;max-width:620px;margin-left:auto;margin-right:auto}
   .hero-accent{color:var(--coral);font-weight:700}
   .chips{display:flex;flex-wrap:wrap;gap:8px;margin:0.75rem 0}
   .chip{background:var(--white);border:0.5px solid var(--border);border-radius:20px;padding:5px 12px;font-size:13px;color:var(--text-secondary);display:flex;align-items:center;gap:6px}
@@ -80,7 +97,7 @@
   .intake-title{font-weight:600;color:var(--navy);margin-bottom:4px}
   .intake-body{font-size:14px;color:var(--text-secondary);line-height:1.7}
   .use-case{background:var(--white);border:0.5px solid var(--border);border-radius:10px;border-left:4px solid var(--coral);padding:1.25rem 1.5rem;display:flex;gap:1.25rem;align-items:flex-start;margin-bottom:1rem}
-  .hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px;margin-left:auto}
+  .hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px}
   .hamburger i{font-size:24px;color:var(--white)}
   .nav-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:90}
   @media(max-width:1023px){
@@ -93,12 +110,22 @@
     .nav-item.active{border-left:none;box-shadow:inset 0 0 0 1px var(--coral)}
     .nav-overlay.open{display:block}
     main{padding:1.25rem}
+    .header-search{flex:1 1 140px;max-width:220px}
+}
+@media(max-width:520px){
+  .logo-full{display:none}
+  .header-search{max-width:170px}
 }
 </style>
 </head>
 <body>
 <header>
-  <div class="logo"><i class="ti ti-sparkles"></i><span><span class="logo-brand">takanock</span> AI Learning Hub</span></div>
+  <div class="logo"><i class="ti ti-sparkles"></i><span><span class="logo-brand">takanock</span><span class="logo-full"> AI Learning Hub</span></span></div>
+  <div class="header-search" id="header-search">
+    <i class="ti ti-search"></i>
+    <input type="text" id="search-input" placeholder="Search this hub..." autocomplete="off" aria-label="Search this hub" oninput="handleSearchInput()" onkeydown="handleSearchKeydown(event)" onfocus="handleSearchInput()">
+    <div class="search-results" id="search-results" role="listbox"></div>
+  </div>
  <button class="hamburger" onclick="toggleNav()" aria-label="Toggle navigation">
   <i class="ti ti-menu-2"></i>
 </button>
@@ -658,6 +685,148 @@
     if (el) el.classList.add('active');
     window.scrollTo(0, 0);
   }
+
+  // --- Site search ---
+  let searchIndex = null;
+  let currentResults = [];
+  let activeResultIndex = -1;
+
+  function buildSearchIndex() {
+    if (searchIndex) return searchIndex;
+    const labels = {};
+    document.querySelectorAll('.nav-item[onclick*="showPage("]').forEach(item => {
+      const m = item.getAttribute('onclick').match(/showPage\('([^']+)'/);
+      if (m) labels[m[1]] = item.textContent.trim();
+    });
+    labels.support = labels.support || 'Questions & Support';
+    const index = [];
+    const selector = 'h1,h2,h3,p,.tip,.example,.step,td,.chip,.intake-title,.intake-body';
+    document.querySelectorAll('.page').forEach(page => {
+      const pageId = page.id.replace('page-', '');
+      const label = labels[pageId] || pageId;
+      page.querySelectorAll(selector).forEach(el => {
+        const text = el.textContent.replace(/\s+/g, ' ').trim();
+        if (text.length < 3) return;
+        index.push({ pageId, label, text, el });
+      });
+    });
+    searchIndex = index;
+    return index;
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function buildSnippet(text, pos, q) {
+    const radius = 50;
+    const start = Math.max(0, pos - radius);
+    const end = Math.min(text.length, pos + q.length + radius);
+    let snippet = text.slice(start, end);
+    if (start > 0) snippet = '…' + snippet;
+    if (end < text.length) snippet += '…';
+    const idxInSnippet = snippet.toLowerCase().indexOf(q.toLowerCase());
+    if (idxInSnippet === -1) return escapeHtml(snippet);
+    const before = escapeHtml(snippet.slice(0, idxInSnippet));
+    const match = escapeHtml(snippet.slice(idxInSnippet, idxInSnippet + q.length));
+    const after = escapeHtml(snippet.slice(idxInSnippet + q.length));
+    return before + '<mark>' + match + '</mark>' + after;
+  }
+
+  function runSearch(query) {
+    const q = query.trim().toLowerCase();
+    if (!q) return [];
+    const idx = buildSearchIndex();
+    const results = [];
+    for (const item of idx) {
+      const lower = item.text.toLowerCase();
+      const pos = lower.indexOf(q);
+      if (pos === -1) continue;
+      const isHeading = item.el.tagName === 'H1' || item.el.tagName === 'H2' || item.el.tagName === 'H3';
+      const score = (isHeading ? 0 : 1000) + pos + item.text.length * 0.01;
+      results.push(Object.assign({}, item, { pos, score }));
+    }
+    results.sort((a, b) => a.score - b.score);
+    return results.slice(0, 8);
+  }
+
+  function handleSearchInput() {
+    const input = document.getElementById('search-input');
+    const query = input.value;
+    const resultsEl = document.getElementById('search-results');
+    activeResultIndex = -1;
+    if (query.trim().length < 2) {
+      resultsEl.classList.remove('open');
+      resultsEl.innerHTML = '';
+      currentResults = [];
+      return;
+    }
+    currentResults = runSearch(query);
+    if (!currentResults.length) {
+      resultsEl.innerHTML = '<div class="search-empty">No matches found.</div>';
+      resultsEl.classList.add('open');
+      return;
+    }
+    resultsEl.innerHTML = currentResults.map((r, i) => {
+      const snippet = buildSnippet(r.text, r.pos, query.trim());
+      return '<div class="search-result" role="option" onclick="selectSearchResult(' + i + ')" data-index="' + i + '">'
+        + '<div class="search-result-page">' + escapeHtml(r.label) + '</div>'
+        + '<div class="search-result-snippet">' + snippet + '</div>'
+        + '</div>';
+    }).join('');
+    resultsEl.classList.add('open');
+  }
+
+  function selectSearchResult(i) {
+    const r = currentResults[i];
+    if (!r) return;
+    showPage(r.pageId, getNavItem(r.pageId));
+    document.getElementById('search-results').classList.remove('open');
+    document.getElementById('search-input').blur();
+    setTimeout(() => {
+      r.el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      r.el.classList.add('search-hit-flash');
+      setTimeout(() => r.el.classList.remove('search-hit-flash'), 2000);
+    }, 50);
+  }
+
+  function updateActiveResult() {
+    document.querySelectorAll('#search-results .search-result').forEach((el, i) => {
+      el.classList.toggle('active', i === activeResultIndex);
+    });
+    const activeEl = document.querySelector('#search-results .search-result.active');
+    if (activeEl) activeEl.scrollIntoView({ block: 'nearest' });
+  }
+
+  function handleSearchKeydown(e) {
+    const resultsEl = document.getElementById('search-results');
+    if (e.key === 'Escape') {
+      resultsEl.classList.remove('open');
+      e.target.blur();
+      return;
+    }
+    if (!currentResults.length) return;
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      activeResultIndex = Math.min(activeResultIndex + 1, currentResults.length - 1);
+      updateActiveResult();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      activeResultIndex = Math.max(activeResultIndex - 1, 0);
+      updateActiveResult();
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      selectSearchResult(activeResultIndex >= 0 ? activeResultIndex : 0);
+    }
+  }
+
+  document.addEventListener('click', (e) => {
+    const container = document.getElementById('header-search');
+    if (container && !container.contains(e.target)) {
+      document.getElementById('search-results').classList.remove('open');
+    }
+  });
+
   let faqsLoaded = false;
   function toggleFaqSection() {
     const content = document.getElementById('faq-content');
