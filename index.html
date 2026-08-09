@@ -942,12 +942,12 @@ The hub has these pages and IDs:
 
 Always end your response with exactly this format on its own line: [PAGE:id] where id is the most relevant page ID from the list above.
 If the question is outside the hub's scope, say so briefly and end your response with [PAGE:support].
-If anyone asks who made you or who built this hub, say you were created by Mia Tursman, AI & Automation Intern at Takanock.`;
+If anyone asks who made you or who built this hub, say you were built by the Takanock AI & Automation team.`;
 
   try {
-    const res = await fetch('https://takanock-ai-onboarding-101.vercel.app/api/claude', {
+    const res = await fetch('/api/claude', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: {'Content-Type': 'application/json', 'x-tkn-hub': '1'},
       body: JSON.stringify({
         model: 'claude-sonnet-4-6',
         max_tokens: 300,
@@ -981,7 +981,7 @@ if (pageMatch) {
 document.getElementById(thinkingId).innerHTML = reply;
 document.getElementById(thinkingId).style.color = 'var(--text-secondary)';
   } catch(e) {
-    document.getElementById(thinkingId).innerHTML = 'Something went wrong. Try again or reach out to Ivan, Ivy, or Mia.';
+    document.getElementById(thinkingId).innerHTML = 'Something went wrong. Try again or reach out to the Takanock AI team.';
   }
   messages.scrollTop = messages.scrollHeight;
 }
