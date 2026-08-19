@@ -20,7 +20,10 @@ export default async function handler(req, res) {
     const response = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
     if (!response.ok) throw new Error(`Airtable ${response.status}`);
     const data = await response.json();
-    const tools = (data.records || []).map(r => ({
+    const tools = (data.records || [])
+      // TKN builds only — Anthropic built-ins (xlsx/pdf/docx/pptx) are platform features, not company builds
+      .filter(r => !String(r.fields['Owner'] || '').toLowerCase().includes('anthropic'))
+      .map(r => ({
       name: r.fields['Name'],
       type: r.fields['Type'],
       oneLiner: r.fields['One-liner'] || '',
