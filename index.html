@@ -137,6 +137,7 @@
     <div class="nav-item active" onclick="showPage('home',this)"><i class="ti ti-home"></i> Home</div>
 
     <div class="nav-section-label">Takanock Resources</div>
+    <div class="nav-item" onclick="showPage('live',this)"><i class="ti ti-broadcast"></i> What's Live</div>
     <div class="nav-item" onclick="showPage('asktakanock',this)"><i class="ti ti-message-chatbot"></i> Ask Takanock</div>
     <div class="nav-item" onclick="showPage('ai101',this)"><i class="ti ti-clipboard-list"></i> AI 101: Automation Intake</div>
     <div class="nav-item" onclick="showPage('skills',this)"><i class="ti ti-sparkles"></i> Company Skills</div>
@@ -171,6 +172,7 @@
       <div style="margin-bottom:2rem">
         <h2 style="font-size:14px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.75rem">Takanock Resources</h2>
         <div class="card-grid">
+          <div class="card" onclick="showPage('live',getNavItem('live'))"><i class="ti ti-broadcast"></i><h3>What's Live</h3><p>Every agent, skill &amp; app you can use today</p></div>
           <div class="card" onclick="showPage('asktakanock',getNavItem('asktakanock'))"><i class="ti ti-message-chatbot"></i><h3>Ask Takanock</h3><p>Your internal AI knowledge base</p></div>
           <div class="card" onclick="showPage('skills',getNavItem('skills'))"><i class="ti ti-sparkles"></i><h3>Company Skills</h3><p>Takanock-specific Claude skills</p></div>
           <div class="card" onclick="showPage('ai101',getNavItem('ai101'))"><i class="ti ti-clipboard-list"></i><h3>AI 101: Automation Intake</h3><p>Submit an automation request</p></div>
@@ -521,6 +523,16 @@
     </div>
 
     <!-- ASK TAKANOCK -->
+    <!-- WHAT'S LIVE -->
+    <div class="page" id="page-live">
+      <div class="page-header"><span class="tag tag-company">Takanock</span><h1>What's Live at Takanock</h1><p>Every AI agent, skill, app, and automation you can use today &mdash; pulled live from the master AI Catalogue, so this list is always current.</p></div>
+      <div class="section">
+        <div class="tip tip-navy"><strong>This is the registry.</strong> Everything here is built, live, and documented. Each entry says what it does, who it's for, and how to reach it. Want something that isn't here? Submit it with <strong>/automation-intake</strong>.</div>
+        <div id="live-tools-list"><p style="color:var(--text-muted);font-size:14px">Loading the catalogue&hellip;</p></div>
+        <div class="example" style="margin-top:1.25rem"><div class="example-label">Prefer the full table?</div>Open the master <a href="https://airtable.com/appPZMqespKQVOfxo/tblgyUfaXovElkJ9s" target="_blank" rel="noopener" style="color:var(--coral)">AI Catalogue in Airtable</a> &mdash; owners, versions, guardrails, and per-build documentation links live there.</div>
+      </div>
+    </div>
+
     <div class="page" id="page-asktakanock">
       <div class="page-header"><span class="tag tag-company">Takanock</span><h1>Ask Takanock</h1><p>Your company's internal AI knowledge base, powered by Claude.</p></div>
       <div class="section"><h2>What is Ask Takanock?</h2>
@@ -542,6 +554,14 @@
           </tbody>
         </table>
       </div>
+      <div class="section"><h2>First time? Activate your connectors</h2>
+        <div class="tip tip-navy"><strong>Ask Takanock reads live company sources through connectors &mdash; and connectors are per-user.</strong> If answers come back empty or generic, this is why.</div>
+        <div class="steps">
+          <div class="step">In Claude, open <strong>Settings &rarr; Connectors</strong>.</div>
+          <div class="step">Enable the Takanock connectors you see there (Airtable, SharePoint, Takanock-project).</div>
+          <div class="step">Ask again &mdash; e.g. <em>"What AI agents do we have and how do I use them?"</em> It reads the live AI Catalogue and answers with what's actually deployed.</div>
+        </div>
+      </div>
       <div class="section"><h2>Tips for getting good answers</h2>
         <div class="steps">
           <div class="step">Be specific &mdash; mention the department, policy name, or project if you know it.</div>
@@ -559,7 +579,7 @@
         <div class="intake-step"><div class="intake-num">1</div><div><div class="intake-title">Open the skills menu</div><div class="intake-body">In Claude Chat, click the <strong>"plus" icon</strong> inside the text box to open the skills menu.</div></div></div>
         <div class="intake-step"><div class="intake-num">2</div><div style="width:100%"><div class="intake-title">Select the automation-intake skill</div><div class="intake-body" style="margin-bottom:0.875rem">Hover over <strong>Skills</strong> and select <strong>/automation-intake</strong> from the dropdown.</div><div style="background:var(--cream);border-left:3px solid var(--slate);border-radius:0 8px 8px 0;padding:0.75rem 1rem;font-size:13px;color:var(--text-secondary);line-height:1.6"><strong style="color:var(--slate)">First time?</strong> Click <strong>"Add skill"</strong> &rarr; go to the <strong>"Shared"</strong> tab &rarr; find and add <strong>/automation-intake</strong>. Once installed, you can also invoke it anytime by typing <strong>/</strong> in Claude Chat.</div></div></div>
         <div class="intake-step"><div class="intake-num">3</div><div><div class="intake-title">Follow the intake process</div><div class="intake-body">Claude will guide you through the process <strong>step by step</strong>. Describe your automation request in detail &mdash; what triggers it, what systems are involved, and what the output should look like.</div></div></div>
-        <div class="intake-step"><div class="intake-num">4</div><div><div class="intake-title">Request submitted to Airtable</div><div class="intake-body">Claude automatically sends your request to the <strong>AI Workstream Tracker</strong> in Airtable. Ivan and the AI Interns will have access and will begin building the automation.</div></div></div>
+        <div class="intake-step"><div class="intake-num">4</div><div><div class="intake-title">Request submitted to Airtable</div><div class="intake-body">Claude automatically sends your request to the <strong>AI Workstream Tracker</strong> in Airtable. Ivan and the AI team will have access and will begin building the automation.</div></div></div>
         <div class="tip tip-navy"><strong>The more detail the better.</strong> The clearer your request &mdash; triggers, systems involved, desired output &mdash; the faster the team can build it for you.</div>
       </div>
       <div class="section"><h2>Use Cases</h2>
@@ -590,9 +610,35 @@
 
     <!-- COMPANY SKILLS -->
     <div class="page" id="page-skills">
-      <div class="page-header"><span class="tag tag-company">Takanock</span><h1>Company Skills</h1><p>Takanock-specific Claude skills available to all employees. Invoke them directly in Claude Chat by typing the skill name.</p></div>
+      <div class="page-header"><span class="tag tag-company">Takanock</span><h1>Company Skills</h1><p>Takanock-specific Claude skills available to all employees. Invoke them directly in Claude Chat by typing the skill name. The full, always-current list lives on the <strong>What's Live</strong> page.</p></div>
+      <div class="section"><h2>/takanock-slides</h2>
+        <div class="tip tip-navy"><strong>/takanock-slides</strong> builds fully on-brand Takanock decks &mdash; official template, colors, fonts, logos, and messaging. <strong>You usually don't need to invoke it:</strong> it now applies automatically whenever you ask Claude for Takanock slides or a deck. Just ask for what you need; say so if you want different styling.</div>
+        <h3>Good to know</h3>
+        <div class="steps">
+          <div class="step">Works for single slides, full decks, covers, data tables, agendas &mdash; and it verifies project figures against live data before putting them on a slide.</div>
+          <div class="step">Pro tip: it's also great for <strong>branding Word documents</strong> &mdash; just tell it to skip the slide layout.</div>
+          <div class="step">Spot something off-brand or wrong? Report it via <strong>/automation-intake</strong> &mdash; please don't make a personal copy of the skill.</div>
+        </div>
+      </div>
+      <div class="section"><h2>/feasibility-analysis</h2>
+        <div class="tip tip-navy"><strong>/feasibility-analysis</strong> generates the full 15-section site feasibility report &mdash; permitting, moratoria, interconnection, land comps &mdash; from live company data. It lives inside the <strong>TKN Site Feasibility and Scoring</strong> Claude Project.</div>
+        <h3>How to invoke it</h3>
+        <div class="steps">
+          <div class="step">Open the <strong>TKN Site feasibility and scoring</strong> Project (pinned in Claude's sidebar).</div>
+          <div class="step">Ask to <em>"run a feasibility analysis on [site]"</em> for the full report, or to <em>"score [site]"</em> for the quick composite score.</div>
+          <div class="step">Reports are honest about data gaps &mdash; coverage % is shown, and scores are capped when critical inputs are missing.</div>
+        </div>
+        <div class="example"><div class="example-label">Who it's for</div>Development / pre-dev team.</div>
+      </div>
+      <div class="section"><h2>Finance &amp; schedule skills</h2>
+        <div class="card-grid">
+          <div class="card"><i class="ti ti-report-money"></i><h3>/ramp-exec-report-v2</h3><p>Generates the executive spend report from Ramp data.</p></div>
+          <div class="card"><i class="ti ti-presentation"></i><h3>/finance-slide-deck</h3><p>Builds branded finance slide decks from your figures.</p></div>
+          <div class="card"><i class="ti ti-calendar-stats"></i><h3>/pdf-schedule-sync</h3><p>Syncs schedule data from PDF exports into your working docs.</p></div>
+        </div>
+      </div>
       <div class="section"><h2>/automation-intake</h2>
-        <div class="tip tip-navy"><strong>/automation-intake</strong> walks you through submitting an automation request to the AI team step by step. Once complete, your request is automatically sent to the AI Workstream Tracker in Airtable where Ivan and the AI Interns will begin building it.</div>
+        <div class="tip tip-navy"><strong>/automation-intake</strong> walks you through submitting an automation request to the AI team step by step. Once complete, your request is automatically sent to the AI Workstream Tracker in Airtable where Ivan and the AI team will begin building it.</div>
         <h3>How to invoke it</h3>
         <div class="steps">
           <div class="step">Click the <strong>"plus" icon</strong> in the Claude Chat text box &rarr; hover over Skills &rarr; select <strong>/automation-intake</strong>.</div>
@@ -642,9 +688,10 @@
       <div class="page-header"><span class="tag tag-company">Takanock</span><h1>Questions &amp; Support</h1><p>Need help with Claude, AI tools, or submitting an automation request? Reach out to the team.</p></div>
       <div class="section"><h2>Contact us</h2>
         <div class="card-grid">
-          <div class="card"><i class="ti ti-user"></i><h3>Ivan Benavides</h3><p><a href="mailto:Ibenavides@takanock.com" style="color:var(--coral);text-decoration:none">Ibenavides@takanock.com</a></p></div>
-          <div class="card"><i class="ti ti-user"></i><h3>Ivy McConarty</h3><p><em style="font-size:12px;color:var(--text-muted)">AI Intern</em><br><a href="mailto:Imcconarty@takanock.com" style="color:var(--coral);text-decoration:none">Imcconarty@takanock.com</a></p></div>
-          <div class="card"><i class="ti ti-user"></i><h3>Mia Tursman</h3><p><em style="font-size:12px;color:var(--text-muted)">AI Intern</em><br><a href="mailto:Mtursman@takanock.com" style="color:var(--coral);text-decoration:none">Mtursman@takanock.com</a></p></div>
+          <div class="card"><i class="ti ti-user"></i><h3>Ivan Benavides</h3><p><em style="font-size:12px;color:var(--text-muted)">AI Lead</em><br><a href="mailto:Ibenavides@takanock.com" style="color:var(--coral);text-decoration:none">Ibenavides@takanock.com</a></p></div>
+          <div class="card"><i class="ti ti-calendar-event"></i><h3>Friday Office Hours</h3><p>Weekly open session &mdash; bring any AI question, no agenda needed. Watch Slack for the invite.</p></div>
+          <div class="card"><i class="ti ti-clipboard-list"></i><h3>Request an automation</h3><p>Use <strong>/automation-intake</strong> in Claude &mdash; your idea goes straight to the AI build tracker.</p></div>
+          <div class="card"><i class="ti ti-headset"></i><h3>IT &amp; data requests</h3><p>Use <strong>/it-help-desk</strong> in Claude &mdash; anything you'd normally Slack Jacob or Charles for.</p></div>
         </div>
       </div>
     </div>
@@ -694,7 +741,36 @@
     const page = document.getElementById('page-' + id);
     if (page) page.classList.add('active');
     if (el) el.classList.add('active');
+    if (id === 'live') loadCatalogue();
     window.scrollTo(0, 0);
+  }
+
+  // --- What's Live: render the AI Catalogue ---
+  let catalogueLoaded = false;
+  async function loadCatalogue() {
+    if (catalogueLoaded) return;
+    const host = document.getElementById('live-tools-list');
+    try {
+      const res = await fetch('/api/get-catalogue');
+      if (!res.ok) throw new Error('bad status');
+      const { tools } = await res.json();
+      if (!tools || !tools.length) throw new Error('empty');
+      catalogueLoaded = true;
+      const esc = s => String(s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+      const groups = {};
+      tools.forEach(t => { (groups[t.type || 'Other'] = groups[t.type || 'Other'] || []).push(t); });
+      const order = ['Agent','App','Dashboard','Skill','Connector','Automation','Other'];
+      host.innerHTML = order.filter(g => groups[g]).map(g => `
+        <h3 style="margin:1.25rem 0 0.6rem">${esc(g)}s</h3>
+        <div class="card-grid">${groups[g].map(t => `
+          <div class="card" style="cursor:default">
+            <i class="ti ${{Agent:'ti-robot',App:'ti-apps',Dashboard:'ti-layout-dashboard',Skill:'ti-sparkles',Connector:'ti-plug',Automation:'ti-refresh'}[g] || 'ti-circle-check'}"></i>
+            <h3>${esc(t.name)}</h3>
+            <p>${esc(t.oneLiner)}${t.audience ? `<br><em style="font-size:12px;color:var(--text-muted)">For: ${esc(t.audience)}</em>` : ''}${t.howTo ? `<br><span style="font-size:12px;color:var(--text-secondary)">${esc(t.howTo)}</span>` : ''}${t.link ? `<br><a href="${esc(t.link)}" target="_blank" rel="noopener" style="color:var(--coral);font-size:12px">Open &rarr;</a>` : ''}</p>
+          </div>`).join('')}</div>`).join('');
+    } catch (e) {
+      host.innerHTML = '<div class="tip tip-navy">The live feed isn\'t available right now &mdash; open the <a href="https://airtable.com/appPZMqespKQVOfxo/tblgyUfaXovElkJ9s" target="_blank" rel="noopener" style="color:var(--coral)">AI Catalogue in Airtable</a> for the full, current list.</div>';
+    }
   }
 
   // --- Site search ---
