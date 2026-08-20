@@ -715,7 +715,17 @@
 
     <!-- COMPANY SKILLS -->
     <div class="page" id="page-skills">
-      <div class="page-header"><span class="tag tag-company">Takanock</span><h1>Company Skills</h1><p>Takanock-specific Claude skills available to all employees. Many apply automatically the moment you ask for what they do &mdash; you can also invoke one explicitly by typing <strong>/</strong> and the skill name in Claude Chat. The full, always-current list lives on the <strong>What's Live</strong> page.</p></div>
+      <div class="page-header"><span class="tag tag-company">Takanock</span><h1>Company Skills</h1><p>Takanock-specific Claude skills published for everyone. Many apply automatically the moment you ask for what they do &mdash; you can also invoke one explicitly by typing <strong>/</strong> and the skill name in Claude Chat.</p></div>
+      <div class="section"><h2>Where your skills live &amp; how to turn one on</h2>
+        <p>All your skills &mdash; company ones, Anthropic's built-ins, and any you've added &mdash; live under <strong>Settings &rarr; Customize &rarr; Skills</strong>. That panel has four tabs:</p>
+        <div class="card-grid">
+          <div class="card" style="cursor:default"><i class="ti ti-list"></i><h3>All</h3><p>Everything available to you, in one list.</p></div>
+          <div class="card" style="cursor:default"><i class="ti ti-user"></i><h3>Personal</h3><p>Skills you added or created yourself.</p></div>
+          <div class="card" style="cursor:default"><i class="ti ti-users"></i><h3>Shared</h3><p>Skills a teammate shared with you.</p></div>
+          <div class="card" style="cursor:default"><i class="ti ti-building"></i><h3>Organization</h3><p>Published for all of Takanock &mdash; these appear automatically, nothing to add.</p></div>
+        </div>
+        <div class="tip tip-navy"><strong>To use one:</strong> just type <strong>/</strong> in the message box and pick it &mdash; or simply ask for what it does and it applies on its own. <strong>Don't see a skill you were told about?</strong> Open <strong>Settings &rarr; Customize &rarr; Skills</strong>, browse or search, and add it. Org skills are already there for everyone.</div>
+      </div>
       <div class="section"><h2>/takanock-branding</h2>
         <div class="tip tip-navy"><strong>/takanock-branding</strong> (formerly /takanock-slides) makes any deliverable fully on-brand &mdash; decks, Word docs, reports, one-pagers — official template, colors, fonts, logos, and messaging. <strong>You usually don't need to invoke it:</strong> it applies automatically whenever you ask Claude for Takanock slides, a deck, or a branded document. Just ask for what you need; say so if you want different styling.</div>
         <h3>Good to know</h3>
@@ -737,7 +747,6 @@
       </div>
       <div class="section"><h2>Finance &amp; schedule skills</h2>
         <div class="card-grid">
-          <div class="card"><i class="ti ti-report-money"></i><h3>/ramp-exec-report-v2</h3><p>Generates the executive spend report from Ramp data.</p></div>
           <div class="card"><i class="ti ti-presentation"></i><h3>/finance-slide-deck</h3><p>Builds branded finance slide decks from your figures.</p></div>
           <div class="card"><i class="ti ti-calendar-stats"></i><h3>/pdf-schedule-sync</h3><p>Syncs schedule data from PDF exports into your working docs.</p></div>
         </div>
@@ -752,16 +761,8 @@
         </div>
         <div class="example"><div class="example-label">Full walkthrough</div>See the <strong>AI 101: Automation Intake</strong> tab under Takanock Resources for the complete step-by-step guide.</div>
       </div>
-      <div class="section"><h2>/it-help-desk</h2>
-        <div class="tip tip-navy"><strong>/it-help-desk</strong> guides you through submitting an IT or data request in plain language &mdash; it infers the structured fields, previews the record, and writes it directly to the IT Requests Airtable table. Essentially anything you'd normally Slack Jacob for.</div>
-        <h3>How to invoke it</h3>
-        <div class="steps">
-          <div class="step">Click the <strong>"plus" icon</strong> in the Claude Chat text box &rarr; hover over Skills &rarr; select <strong>/it-help-desk</strong>.</div>
-          <div class="step">Don't see it? Skills live under <strong>Settings &rarr; Customize &rarr; Skills</strong> &mdash; find it there and add it.</div>
-          <div class="step">Describe your IT or data request in plain language &mdash; Claude walks you through submitting it.</div>
-        </div>
-        <div class="example"><div class="example-label">Who it's for</div>Every employee.</div>
-        <div class="example"><div class="example-label">Other ways to reach it</div>An n8n workflow also watches a Slack channel for IT requests and logs them into the same Airtable table, and the same flow is built into the <strong>IT Help Desk</strong> app.</div>
+      <div class="section"><h2>Need IT help?</h2>
+        <div class="tip">For IT or data requests &mdash; anything you'd normally Slack Jacob or Charles for &mdash; use the <strong>IT Help Desk</strong> app, or just post in the IT help Slack channel. Requests are tracked and routed automatically.</div>
       </div>
       <div class="section"><h2>/schedule-slide</h2>
         <div class="tip tip-navy"><strong>/schedule-slide</strong> pulls live schedule data from your project file and builds or refreshes a schedule slide in PowerPoint &mdash; no copy-pasting or manual re-keying. Your deck stays in sync with the actual project file.</div>
@@ -772,21 +773,7 @@
         </div>
         <h3>When to use it</h3>
         <div class="example"><div class="example-label">Use it when</div>You want a PowerPoint slide to reflect the current Microsoft Project / P6 schedule &mdash; either building a new one or refreshing an existing one.</div>
-        <div class="example"><div class="example-label">Don't use it for</div>Redesigning a deck, writing narrative slides, or applying a brand template. Copying values from a master deck (use /deck-unify instead).</div>
-      </div>
-      <div class="section"><h2>/deck-unify</h2>
-        <div class="tip tip-navy"><strong>/deck-unify</strong> copies specific values &mdash; dates, figures, status, table cells &mdash; from a master deck into a branch deck, and changes nothing else. One-way only: master &rarr; branch.</div>
-        <h3>What it prevents</h3>
-        <p>Stops the model from "getting creative" &mdash; rewriting boilerplate, restyling, or pulling in slides the branch deliberately dropped. Only explicitly designated fields are ever touched.</p>
-        <h3>When to use it</h3>
-        <div class="example"><div class="example-label">Use it when</div>You want to refresh specific stale values in a branch or derived deck from a master deck &mdash; without touching layout, formatting, or which slides exist.</div>
-        <div class="example"><div class="example-label">Don't use it for</div>Authoring new slides, restructuring a deck, or freely rewriting content.</div>
-        <h3>What you need</h3>
-        <div class="steps">
-          <div class="step">The branch deck (.pptx) to update &mdash; usually the open file.</div>
-          <div class="step">The master deck (.pptx) with the authoritative values. If not provided, the skill will ask for it.</div>
-          <div class="step">The skill will show you a full plan of every change before writing anything &mdash; nothing is applied until you approve.</div>
-        </div>
+        <div class="example"><div class="example-label">Don't use it for</div>Redesigning a deck, writing narrative slides, or applying a brand template.</div>
       </div>
       <div class="section"><h2>Anthropic's built-in skills</h2>
         <p>Beyond Takanock's own skills, Claude ships with <strong>Anthropic-built skills</strong> available to everyone &mdash; they show up in the same Skills list. The document ones (<strong>docx, pptx, xlsx, pdf</strong>) let Claude create and edit Office files; a few others are worth knowing:</p>
@@ -1128,7 +1115,7 @@ The hub has these pages and IDs:
 - memory: How Claude remembers - the context/persistence model. Explains the difference between personal instructions, Memory, Project instructions, and a single chat, and how to view or clear Memory in Settings > Capabilities. Route here for any question about whether/how Claude remembers things across chats.
 - asktakanock: internal AI knowledge base trained on Takanock docs and policies
 - ai101: how to submit an automation request using /automation-intake skill
-- skills: /takanock-branding, /feasibility-analysis, /automation-intake, /it-help-desk, /schedule-slide, /deck-unify, /finance-slide-deck, /pdf-schedule-sync, /ramp-exec-report-v2
+- skills: org-published (available to everyone) = /takanock-branding, /feasibility-analysis, /automation-intake, /schedule-slide. Finance/schedule extras (/finance-slide-deck, /pdf-schedule-sync) exist and may need adding via Settings > Customize > Skills. For IT/data requests, point to the IT Help Desk app / IT Slack channel, not a skill. If a skill isn't showing, tell them to open Settings > Customize > Skills and add it.
 - help: this chat assistant page (current page)
 - support: Questions & Support &mdash; contact page (Ivan Benavides, AI Lead; Friday Office Hours; plus /automation-intake and /it-help-desk). Use this when the question is outside the hub's scope.
 
