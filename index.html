@@ -155,6 +155,7 @@
     <div class="nav-section-label">AI concepts</div>
     <div class="nav-item" onclick="showPage('agents',this)"><i class="ti ti-robot"></i> AI Agents</div>
     <div class="nav-item" onclick="showPage('workflows',this)"><i class="ti ti-git-branch"></i> Automating Workflows</div>
+    <div class="nav-item" onclick="showPage('memory',this)"><i class="ti ti-brain"></i> How Claude Remembers</div>
 
     <div class="nav-item" onclick="showPage('help',this)"><i class="ti ti-help-circle"></i> Help</div>
   </nav>
@@ -191,6 +192,7 @@
           <div class="card" onclick="showPage('customize',getNavItem('customize'))"><i class="ti ti-adjustments"></i><h3>Customize</h3><p>Skills, connectors &amp; preferences</p></div>
           <div class="card" onclick="showPage('agents',getNavItem('agents'))"><i class="ti ti-robot"></i><h3>AI Agents</h3><p>Autonomous multi-step AI tasks</p></div>
           <div class="card" onclick="showPage('workflows',getNavItem('workflows'))"><i class="ti ti-git-branch"></i><h3>Workflows</h3><p>Automate with AI tools</p></div>
+          <div class="card" onclick="showPage('memory',getNavItem('memory'))"><i class="ti ti-brain"></i><h3>How Claude Remembers</h3><p>Memory, context &amp; persistence explained</p></div>
         </div>
       </div>
       <div style="margin-top:1rem;padding:0.85rem 1rem;background:var(--cream-dark);border-radius:8px;border-left:3px solid var(--coral);font-size:14px;color:var(--text-secondary)">
@@ -222,6 +224,11 @@
         <div class="example"><div class="example-label">Draft</div>"Draft a project status update email for the Monday standup."</div>
         <div class="example"><div class="example-label">Analyze</div>"What are the main themes in this customer feedback survey?"</div>
         <div class="example"><div class="example-label">Brainstorm</div>"Give me 10 ideas for our Q3 team offsite."</div>
+      </div>
+      <div class="section"><h2>Artifacts: reusable outputs in the side panel</h2>
+        <p>When you ask Claude for something self-contained and reusable &mdash; a formatted document, a table, a chart, a bit of code, a small interactive tool &mdash; it often opens as an <strong>Artifact</strong>: a panel to the right of your conversation you can read, edit, and come back to, separate from the chat thread.</p>
+        <div class="tip"><strong>Artifacts vs. Claude Design:</strong> Artifacts appear automatically inside a normal chat for one-off reusable outputs. <strong>Claude Design</strong> is the dedicated tool for polished visual work (decks, sites, one-pagers). Same idea &mdash; a workspace beside the chat &mdash; different scale.</div>
+        <p style="font-size:13px;color:var(--text-muted)">Artifacts are on by default (Settings &rarr; Capabilities &rarr; Visuals). That same screen has <strong>Inline visualizations</strong> &mdash; charts and diagrams drawn right in the conversation.</p>
       </div>
       <div class="section"><h2>Things to keep in mind</h2><p>Claude can make mistakes. Always review important outputs before sending or publishing. Never share sensitive passwords, personal data, or confidential information beyond what your company policy allows.</p></div>
     </div>
@@ -540,6 +547,45 @@
           <div class="step">Map out the steps: what triggers it, what data is involved, what the output should be.</div>
           <div class="step">Build a simple version in n8n or Zapier with an AI step in the middle.</div>
           <div class="step">Test thoroughly, add error handling, and gradually hand off more to the automation.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOW CLAUDE REMEMBERS -->
+    <div class="page" id="page-memory">
+      <div class="page-header"><span class="tag tag-ai">AI concepts</span><h1>How Claude remembers</h1><p>Context, memory, and persistence &mdash; the part everyone has questions about. Claude keeps track of things in a few different ways, and they're easy to mix up. Here's the whole picture in one place.</p></div>
+      <div class="section"><h2>The four layers of context</h2>
+        <p style="margin-bottom:1rem">Anything Claude "knows" about you or your work comes from one of four layers &mdash; from the one that's always on, down to the one that lasts only as long as a single conversation.</p>
+        <table>
+          <thead><tr><th>Layer</th><th>What it is</th><th>Who sets it</th><th>Lasts across chats?</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Personal instructions</strong></td><td>A standing brief about <em>you</em> &mdash; your role, how you like answers</td><td>You write it</td><td>Yes &mdash; always on</td></tr>
+            <tr><td><strong>Memory</strong></td><td>Context Claude <em>picks up on its own</em> from your past chats</td><td>Claude generates it; you view &amp; clear it</td><td>Yes, if enabled</td></tr>
+            <tr><td><strong>Project</strong></td><td>A workspace with its own instructions, files, and memory</td><td>You / your team</td><td>Yes &mdash; inside that Project</td></tr>
+            <tr><td><strong>A single chat</strong></td><td>The live conversation you're in</td><td>&mdash;</td><td><strong>No</strong> &mdash; a new chat starts fresh (unless Memory is on)</td></tr>
+          </tbody>
+        </table>
+        <div class="tip tip-navy"><strong>The one distinction that clears up most confusion:</strong> <strong>Instructions</strong> are what you <em>tell</em> Claude to always do &mdash; you write them. <strong>Memory</strong> is what Claude <em>remembers on its own</em> from working with you &mdash; it writes them, you curate. Different things, different places.</div>
+      </div>
+      <div class="section"><h2>The two questions everyone actually asks</h2>
+        <div class="example"><div class="example-label">"Does Claude remember what I told it yesterday?"</div>Within a single conversation, always. <strong>Across</strong> conversations, only if <strong>Memory</strong> is turned on (see below). A brand-new chat with Memory off starts with a clean slate.</div>
+        <div class="example"><div class="example-label">"Where do I put standing info?"</div>About <strong>you</strong> &rarr; your personal Instructions. About a <strong>workstream</strong> &rarr; that Project's Instructions. Something you'd rather Claude just pick up over time &rarr; let <strong>Memory</strong> do it.</div>
+      </div>
+      <div class="section"><h2>Managing your Memory</h2>
+        <p>On your Takanock account, Memory lives under <strong>Settings &rarr; Capabilities &rarr; Memory</strong>, with two switches:</p>
+        <div class="steps">
+          <div class="step"><strong>Search and reference chats</strong> &mdash; lets Claude look back through your past chats for relevant details.</div>
+          <div class="step"><strong>Generate memory from chat history</strong> &mdash; lets Claude remember context from your chats (this one covers both chats and Projects).</div>
+        </div>
+        <div class="tip"><strong>You're in control.</strong> Use <strong>"View and manage memory"</strong> on that same screen to see exactly what Claude has remembered, edit it, or clear it. Want a one-off with no memory? Start a fresh chat with these switched off.</div>
+      </div>
+      <div class="section"><h2>A note on privacy</h2>
+        <p>Your chats, files, and memory on Takanock's Claude Enterprise plan <strong>are not used to train Claude's models</strong>. Your memory is personal to you (not shared with teammates), and it's yours to review or wipe anytime. As always: don't paste passwords, secrets, or data beyond what company policy allows.</p>
+      </div>
+      <div class="section"><h2>Where this connects</h2>
+        <div class="card-grid">
+          <div class="card" onclick="showPage('customize',getNavItem('customize'))"><i class="ti ti-user-cog"></i><h3>Personal instructions</h3><p>Set your standing preferences &mdash; see "Set up your personal preferences" on Customize</p></div>
+          <div class="card" onclick="showPage('projects',getNavItem('projects'))"><i class="ti ti-folders"></i><h3>Project instructions</h3><p>A standing brief for a whole workstream &mdash; see Projects</p></div>
         </div>
       </div>
     </div>
@@ -1046,6 +1092,7 @@ The hub has these pages and IDs:
 - agents: what agents are (the model directs its own steps), when to use an agent vs a fixed automation/workflow, key concepts
 - workflows: workflow automation patterns, tools (n8n, Zapier, Airtable, Notion, Anthropic API)
 - live: What's Live - the registry of every live agent, skill, app, automation, and connector, pulled from the AI Catalogue. Point users here whenever they ask what AI exists or what they can use.
+- memory: How Claude remembers - the context/persistence model. Explains the difference between personal instructions, Memory, Project instructions, and a single chat, and how to view or clear Memory in Settings > Capabilities. Route here for any question about whether/how Claude remembers things across chats.
 - asktakanock: internal AI knowledge base trained on Takanock docs and policies
 - ai101: how to submit an automation request using /automation-intake skill
 - skills: /takanock-branding, /feasibility-analysis, /automation-intake, /it-help-desk, /schedule-slide, /deck-unify, /finance-slide-deck, /pdf-schedule-sync, /ramp-exec-report-v2
@@ -1084,7 +1131,7 @@ const pageMatch = reply.match(/\[PAGE:(\w+)\]/);
 
 if (pageMatch) {
   const pageId = pageMatch[1];
-  const pageNames = {home:'Home',live:"What's Live",chat:'Claude Chat',models:'Claude Models',cowork:'Cowork',design:'Claude Design',code:'Claude Code',projects:'Projects',customize:'Customize',agents:'AI Agents',workflows:'Automating Workflows',asktakanock:'Ask Takanock',ai101:'AI 101: Automation Intake',skills:'Company Skills',help:'Help',support:'Questions & Support'};
+  const pageNames = {home:'Home',live:"What's Live",chat:'Claude Chat',models:'Claude Models',cowork:'Cowork',design:'Claude Design',code:'Claude Code',projects:'Projects',customize:'Customize',agents:'AI Agents',workflows:'Automating Workflows',memory:"How Claude remembers",asktakanock:'Ask Takanock',ai101:'AI 101: Automation Intake',skills:'Company Skills',help:'Help',support:'Questions & Support'};
   const pageName = pageNames[pageId] || pageId;
   reply = reply.replace(/\[PAGE:\w+\]/, '');
   reply = reply.trim() + `<br><br><span onclick="showPage('${pageId}', getNavItem('${pageId}'))" style="display:inline-block;background:var(--coral);color:var(--white);padding:6px 16px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;margin-top:4px">&rarr; Go to ${pageName}</span>`;
