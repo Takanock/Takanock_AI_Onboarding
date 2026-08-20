@@ -225,6 +225,11 @@
         <div class="example"><div class="example-label">Analyze</div>"What are the main themes in this customer feedback survey?"</div>
         <div class="example"><div class="example-label">Brainstorm</div>"Give me 10 ideas for our Q3 team offsite."</div>
       </div>
+      <div class="section"><h2>Working with your documents</h2>
+        <p>You don't need a Project to use your files &mdash; drag a document straight into any chat and ask Claude to summarize it, pull out the key points, answer questions about it, or reformat it. Claude reads <strong>PDF, Word, Excel, CSV, PowerPoint, text</strong>, and more.</p>
+        <div class="tip"><strong>Good to know:</strong> files are big but not infinite &mdash; a very long document (hundreds of pages) may not fit in one go. For something you'll come back to across many chats, upload it to a <strong>Project</strong> once instead of re-attaching it every time.</div>
+        <div class="example"><div class="example-label">Try it</div>"Here's our vendor contract (PDF) &mdash; summarize the payment terms and flag anything unusual."</div>
+      </div>
       <div class="section"><h2>Artifacts: reusable outputs in the side panel</h2>
         <p>When you ask Claude for something self-contained and reusable &mdash; a formatted document, a table, a chart, a bit of code, a small interactive tool &mdash; it often opens as an <strong>Artifact</strong>: a panel to the right of your conversation you can read, edit, and come back to, separate from the chat thread.</p>
         <div class="tip"><strong>Artifacts vs. Claude Design:</strong> Artifacts appear automatically inside a normal chat for one-off reusable outputs. <strong>Claude Design</strong> is the dedicated tool for polished visual work (decks, sites, one-pagers). Same idea &mdash; a workspace beside the chat &mdash; different scale.</div>
@@ -430,6 +435,18 @@
         <div class="tip tip-navy"><strong>Where:</strong> click your initials (lower-left) &rarr; <strong>Settings</strong> &rarr; <strong>General</strong>. Fill in <strong>What should Claude call you?</strong>, <strong>What best describes your work?</strong>, and the <strong>Instructions for Claude</strong> box &mdash; "Claude will keep these in mind across chats and Cowork."</div>
         <div class="example"><div class="example-label">Example</div>"I'm a project manager on the development team. Lead with the answer, then the detail. Use bullets for anything over three items. Flag assumptions and data gaps."</div>
         <p style="font-size:13px;color:var(--text-muted)">Not the same as a <strong>Project's</strong> Instructions (which apply to one workstream, for everyone in it) or a <strong>Skill</strong> (which does a specific task the Takanock way). This is just <em>you</em>, everywhere you use Claude.</p>
+      </div>
+      <div class="section"><h2>Personal vs. Project vs. Skill &mdash; which one?</h2>
+        <p style="margin-bottom:1rem">There are three ways to make Claude work <em>your</em> way. They're not competitors &mdash; you'll use all three &mdash; but knowing which is which saves a lot of confusion.</p>
+        <table>
+          <thead><tr><th>Use&hellip;</th><th>When you want&hellip;</th><th>Who it affects</th><th>Takanock example</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Personal instructions</strong></td><td>Claude to know <em>you</em> &mdash; your role, how you like answers</td><td>Just you, in every chat</td><td>"I'm a PM. Lead with the answer, use bullets."</td></tr>
+            <tr><td><strong>Project instructions</strong></td><td>Consistent behavior across a <em>workstream</em></td><td>Everyone using that Project</td><td>The TKN Site Feasibility Project's brief</td></tr>
+            <tr><td><strong>Skill</strong></td><td>A specific, repeatable <em>task</em> done the Takanock way</td><td>Anyone, when the task comes up</td><td>/takanock-branding on a deck</td></tr>
+          </tbody>
+        </table>
+        <div class="tip"><strong>Rule of thumb:</strong> about <em>you</em> &rarr; personal instructions. About a <em>workstream</em> &rarr; a Project. A <em>task you repeat</em> &rarr; a Skill. And if you'd rather Claude just pick things up over time on its own, that's <strong>Memory</strong> &mdash; see <em>How Claude remembers</em>.</div>
       </div>
       <div class="section"><h2>Key terms</h2>
         <div class="card-grid">
@@ -763,6 +780,15 @@
           <div class="step">The master deck (.pptx) with the authoritative values. If not provided, the skill will ask for it.</div>
           <div class="step">The skill will show you a full plan of every change before writing anything &mdash; nothing is applied until you approve.</div>
         </div>
+      </div>
+      <div class="section"><h2>Anthropic's built-in skills</h2>
+        <p>Beyond Takanock's own skills, Claude ships with <strong>Anthropic-built skills</strong> available to everyone &mdash; they show up in the same Skills list. The document ones (<strong>docx, pptx, xlsx, pdf</strong>) let Claude create and edit Office files; a few others are worth knowing:</p>
+        <div class="card-grid">
+          <div class="card"><i class="ti ti-sun"></i><h3>morning</h3><p>A calm, visual "morning briefing" &mdash; your day drawn as a single glance, plus what needs you and what's already handled, pulled from your calendar, email, and chats.</p></div>
+          <div class="card"><i class="ti ti-school"></i><h3>learn</h3><p>Turns a topic into a guided, interactive lesson &mdash; handy for getting up to speed on something new.</p></div>
+          <div class="card"><i class="ti ti-wand"></i><h3>skill-creator</h3><p>Helps you build your own skill. If you keep giving Claude the same instructions, this turns them into a reusable one.</p></div>
+        </div>
+        <div class="tip tip-navy"><strong>Recommended: set up your <em>morning</em> briefing.</strong> Ask Claude for <em>"my morning briefing"</em> to try it once, then <em>"set this up as a recurring task every weekday at 8am"</em> so it's waiting for you each morning. It needs your <strong>Microsoft 365 connector</strong> on (Settings &rarr; Connectors) to read your calendar and inbox &mdash; switch that on first, or the briefing comes back empty.</div>
       </div>
     </div>
     <div class="page" id="page-support">
