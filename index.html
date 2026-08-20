@@ -675,7 +675,7 @@
           <div class="step">Describe your IT or data request in plain language &mdash; Claude walks you through submitting it.</div>
         </div>
         <div class="example"><div class="example-label">Who it's for</div>Every employee.</div>
-        <div class="example"><div class="example-label">Other ways to reach it</div>An n8n workflow also watches a Slack channel for IT requests and logs them into the same Airtable table, and the same flow has been built into the <strong>Intake Hub</strong> app.</div>
+        <div class="example"><div class="example-label">Other ways to reach it</div>An n8n workflow also watches a Slack channel for IT requests and logs them into the same Airtable table, and the same flow is built into the <strong>IT Help Desk</strong> app.</div>
       </div>
       <div class="section"><h2>/schedule-slide</h2>
         <div class="tip tip-navy"><strong>/schedule-slide</strong> pulls live schedule data from your project file and builds or refreshes a schedule slide in PowerPoint &mdash; no copy-pasting or manual re-keying. Your deck stays in sync with the actual project file.</div>
@@ -1021,19 +1021,19 @@
 The hub has these pages and IDs:
 - home: overview and navigation cards
 - chat: what Claude is, how to write good prompts, example use cases
-- cowork: Anthropic desktop app for file-heavy tasks alongside other apps
-- design: beta product for generating slides, one-pagers, and visual documents. Used at Takanock by the Commercial office for PowerPoint standardization
-- code: command-line coding assistant, runs in terminal with direct codebase access
+- cowork: a mode in the Claude app where Claude works directly with your files/folders/apps &mdash; you describe a task, it plans and executes, you steer. Chat = a conversation; Cowork = a working session
+- design: research preview (Anthropic Labs) for generating slides, one-pagers, prototypes, and sites. For official Takanock decks/docs, the /takanock-branding skill in Chat is the surest on-brand path
+- code: Anthropic's AI coding agent &mdash; runs across the terminal, the Claude desktop app, the web, and IDEs (VS Code, JetBrains), working directly in your codebase
 - models: overview of Haiku, Sonnet, Opus, and Fable, and which to use when; Sonnet 5 is Takanock's default model
 - projects: shared Claude workspaces with persistent context, file uploads, and custom instructions
 - customize: connectors, MCP, API, SDK, JSON, Webhook definitions. Takanock-project MCP connector
-- agents: what agents are, when to use them vs chatbots, key concepts
+- agents: what agents are (the model directs its own steps), when to use an agent vs a fixed automation/workflow, key concepts
 - workflows: workflow automation patterns, tools (n8n, Zapier, Airtable, Notion, Anthropic API)
 - asktakanock: internal AI knowledge base trained on Takanock docs and policies
 - ai101: how to submit an automation request using /automation-intake skill
 - skills: /automation-intake, /it-help-desk, /schedule-slide, /deck-unify
 - help: this chat assistant page (current page)
-- support: Questions & Support &mdash; contact page with email addresses for Ivan, Ivy, and Mia. Use this when the question is outside the hub's scope.
+- support: Questions & Support &mdash; contact page (Ivan Benavides, AI Lead; Friday Office Hours; plus /automation-intake and /it-help-desk). Use this when the question is outside the hub's scope.
 
 Always end your response with exactly this format on its own line: [PAGE:id] where id is the most relevant page ID from the list above.
 If the question is outside the hub's scope, say so briefly and end your response with [PAGE:support].
