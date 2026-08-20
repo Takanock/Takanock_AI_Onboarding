@@ -391,6 +391,18 @@
           <div class="step">Invite teammates via their email address and start chatting!</div>
         </div>
       </div>
+      <div class="section"><h2>Writing your Project's instructions</h2>
+        <p>Every Project has an <strong>Instructions</strong> field &mdash; a standing brief Claude reads at the start of <em>every</em> chat inside that Project. Think of it as onboarding an assistant once, instead of re-explaining yourself each time. It's how you "program" Claude's behavior for a whole workstream without writing any code.</p>
+        <div class="tip tip-navy"><strong>Where to set it:</strong> open the Project and edit its <strong>Instructions</strong>. It applies to <em>everyone</em> who uses that Project &mdash; a team-level setting, not a personal one.</div>
+        <h3>What makes a good one &mdash; four ingredients</h3>
+        <div class="steps">
+          <div class="step"><strong>Role</strong> &mdash; who Claude is helping, in what capacity. <em>"You help Takanock's development team evaluate potential sites."</em></div>
+          <div class="step"><strong>Voice &amp; audience</strong> &mdash; how the output should read. <em>"Concise and data-forward, ready for an exec audience."</em></div>
+          <div class="step"><strong>Rules &amp; guardrails</strong> &mdash; the non-negotiables. <em>"Cite the source document. Flag any data gaps. Never invent figures."</em></div>
+          <div class="step"><strong>Output format</strong> &mdash; the shape you want. <em>"Lead with the answer, then supporting bullets."</em></div>
+        </div>
+        <div class="example"><div class="example-label">Instructions vs. files</div>A Project's <strong>Instructions</strong> tell Claude <em>how to behave</em>; the files you upload to a Project tell it <em>what to know</em>. Use both together.</div>
+      </div>
       <div class="section"><h2>Company example: AI &amp; Automation Intake Assistant</h2>
         <div class="tip tip-navy"><strong>AI &amp; Automation Intake Assistant</strong> is a Takanock Claude Project built so employees can submit automation requests, get setup and procedural guidance, and ask questions &mdash; all in one place.</div>
         <div class="card-grid">
@@ -406,8 +418,12 @@
     <!-- CUSTOMIZE -->
     <div class="page" id="page-customize">
       <div class="page-header"><span class="tag tag-claude">Claude</span><h1>Customize: Skills &amp; Connectors</h1><p>Claude can be connected to your apps and extended with skills to make it more powerful for your specific needs.</p></div>
-      <p>Customize how Claude behaves by setting preferences in your profile &mdash; your job title, preferred writing style, or how detailed you want responses to be.</p>
-        <div class="tip"><strong>User preferences</strong> let you set standing instructions like: "I'm a project manager. Always be concise. Use bullet points for lists."</div>
+      <div class="section"><h2>Set up your personal preferences (do this first)</h2>
+        <p>Before anything else, tell Claude who you are and how you like to work &mdash; once. These are <strong>account-wide standing instructions</strong> that apply to <em>all</em> your chats and Cowork sessions, and they're private to you (not shared with teammates).</p>
+        <div class="tip tip-navy"><strong>Where:</strong> click your initials (lower-left) &rarr; <strong>Settings</strong> &rarr; <strong>General</strong>. Fill in <strong>What should Claude call you?</strong>, <strong>What best describes your work?</strong>, and the <strong>Instructions for Claude</strong> box &mdash; "Claude will keep these in mind across chats and Cowork."</div>
+        <div class="example"><div class="example-label">Example</div>"I'm a project manager on the development team. Lead with the answer, then the detail. Use bullets for anything over three items. Flag assumptions and data gaps."</div>
+        <p style="font-size:13px;color:var(--text-muted)">Not the same as a <strong>Project's</strong> Instructions (which apply to one workstream, for everyone in it) or a <strong>Skill</strong> (which does a specific task the Takanock way). This is just <em>you</em>, everywhere you use Claude.</p>
+      </div>
       <div class="section"><h2>Key terms</h2>
         <div class="card-grid">
           <div class="card"><i class="ti ti-plug"></i><h3>API</h3><p>Application Programming Interface &mdash; rules that let software talk to other software. When Claude connects to Slack, Airtable, or any service, it uses that service's API.</p></div>
@@ -452,7 +468,7 @@
         <div style="position:relative;width:100%;padding-top:56.25%;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(13,31,76,0.12);margin-bottom:1rem">
           <iframe src="https://www.youtube.com/embed/kS1MJFZWMq4" title="Creating custom Skills with Claude" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
-        <div class="tip tip-navy"><strong>Looking for Takanock skills?</strong> Head to the <strong>Company Skills</strong> tab under Takanock Resources in the sidebar to see all available skills including /automation-intake, /it-help-desk, /schedule-slide, and /deck-unify.</div>
+        <div class="tip tip-navy"><strong>Looking for Takanock skills?</strong> Head to the <strong>Company Skills</strong> tab under Takanock Resources in the sidebar for the full set &mdash; /takanock-branding, /feasibility-analysis, /automation-intake, /it-help-desk, /schedule-slide, /deck-unify, and more &mdash; with how-to-use notes for each.</div>
         <div class="tip tip-slate"><strong>Looking for more skills?</strong> Browse <a href="https://www.skills.sh/mattpocock/skills" target="_blank" rel="noopener" style="color:var(--slate);font-weight:600;text-decoration:underline">skills.sh/mattpocock/skills</a> to see a wider directory of Claude skills and what each one does.</div>
       </div>
 
@@ -1029,9 +1045,10 @@ The hub has these pages and IDs:
 - customize: connectors, MCP, API, SDK, JSON, Webhook definitions. Takanock-project MCP connector
 - agents: what agents are (the model directs its own steps), when to use an agent vs a fixed automation/workflow, key concepts
 - workflows: workflow automation patterns, tools (n8n, Zapier, Airtable, Notion, Anthropic API)
+- live: What's Live - the registry of every live agent, skill, app, automation, and connector, pulled from the AI Catalogue. Point users here whenever they ask what AI exists or what they can use.
 - asktakanock: internal AI knowledge base trained on Takanock docs and policies
 - ai101: how to submit an automation request using /automation-intake skill
-- skills: /automation-intake, /it-help-desk, /schedule-slide, /deck-unify
+- skills: /takanock-branding, /feasibility-analysis, /automation-intake, /it-help-desk, /schedule-slide, /deck-unify, /finance-slide-deck, /pdf-schedule-sync, /ramp-exec-report-v2
 - help: this chat assistant page (current page)
 - support: Questions & Support &mdash; contact page (Ivan Benavides, AI Lead; Friday Office Hours; plus /automation-intake and /it-help-desk). Use this when the question is outside the hub's scope.
 
@@ -1044,7 +1061,7 @@ If anyone asks who made you or who built this hub, say you were built by the Tak
       method: 'POST',
       headers: {'Content-Type': 'application/json', 'x-tkn-hub': '1'},
       body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
+        model: 'claude-sonnet-5',
         max_tokens: 300,
         system: systemPrompt,
         messages: [{role: 'user', content: text}]
@@ -1067,7 +1084,7 @@ const pageMatch = reply.match(/\[PAGE:(\w+)\]/);
 
 if (pageMatch) {
   const pageId = pageMatch[1];
-  const pageNames = {home:'Home',chat:'Claude Chat',models:'Claude Models',cowork:'Cowork',design:'Claude Design',code:'Claude Code',projects:'Projects',customize:'Customize',agents:'AI Agents',workflows:'Automating Workflows',asktakanock:'Ask Takanock',ai101:'AI 101: Automation Intake',skills:'Company Skills',help:'Help',support:'Questions & Support'};
+  const pageNames = {home:'Home',live:"What's Live",chat:'Claude Chat',models:'Claude Models',cowork:'Cowork',design:'Claude Design',code:'Claude Code',projects:'Projects',customize:'Customize',agents:'AI Agents',workflows:'Automating Workflows',asktakanock:'Ask Takanock',ai101:'AI 101: Automation Intake',skills:'Company Skills',help:'Help',support:'Questions & Support'};
   const pageName = pageNames[pageId] || pageId;
   reply = reply.replace(/\[PAGE:\w+\]/, '');
   reply = reply.trim() + `<br><br><span onclick="showPage('${pageId}', getNavItem('${pageId}'))" style="display:inline-block;background:var(--coral);color:var(--white);padding:6px 16px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;margin-top:4px">&rarr; Go to ${pageName}</span>`;
