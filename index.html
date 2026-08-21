@@ -458,7 +458,7 @@
       <div class="section"><h2>Key terms</h2>
         <div class="card-grid">
           <div class="card"><i class="ti ti-plug"></i><h3>API</h3><p>Application Programming Interface &mdash; rules that let software talk to other software. When Claude connects to Slack, Airtable, or any service, it uses that service's API.</p></div>
-          <div class="card"><i class="ti ti-puzzle"></i><h3>MCP</h3><p>Model Context Protocol &mdash; an open standard by Anthropic giving AI a universal "plug" to connect to tools like Notion, GitHub, and Airtable without custom code.</p></div>
+          <div class="card"><i class="ti ti-puzzle"></i><h3>MCP</h3><p>Model Context Protocol &mdash; an open standard by Anthropic giving AI a universal "plug" to connect to tools without custom code. <strong>In the Claude app, a connector <em>is</em> an MCP</strong> &mdash; same thing, friendlier name. See <em>Connectors</em> below: it's the highest-leverage thing to learn.</p></div>
           <div class="card"><i class="ti ti-tool"></i><h3>SDK</h3><p>Software Development Kit &mdash; a pre-built library that makes calling an API easier. Anthropic has SDKs for Python and JavaScript.</p></div>
           <div class="card"><i class="ti ti-braces"></i><h3>JSON</h3><p>JavaScript Object Notation &mdash; a lightweight, structured format for exchanging data between systems. Most APIs send and receive data as JSON.</p></div>
           <div class="card"><i class="ti ti-webhook"></i><h3>Webhook</h3><p>A URL that "lights up" when triggered by an event. AI agents are often started by a webhook &mdash; when it's hit, the workflow begins.</p></div>
@@ -469,7 +469,9 @@
         <div style="position:relative;width:100%;padding-top:56.25%;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(13,31,76,0.12);margin-bottom:1rem">
           <iframe src="https://www.youtube.com/embed/_jjSS0qGFbI" title="Getting started with connectors in Claude.ai" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
-        <p>Connectors let Claude access and act in your other tools &mdash; like reading Slack messages, searching Google Drive, or creating Notion pages.</p>
+        <div class="tip tip-navy"><strong>Start here.</strong> If you learn one thing about AI at Takanock, make it connectors. A connector plugs Claude into the tools we already use every day &mdash; <strong>SharePoint, Outlook, Teams, Airtable</strong> and more &mdash; so it can read and act on your real work instead of just chatting about it. This is the single highest-leverage skill to build: it's the difference between an assistant that <em>knows things</em> and one that <em>does the work with you</em>.</div>
+        <p><strong>&ldquo;Connector&rdquo; and &ldquo;MCP&rdquo; are the same thing.</strong> MCP (Model Context Protocol) is the open standard underneath; <em>connector</em> is just Claude's friendly name for one. So &mdash; &ldquo;add the connector&rdquo; and &ldquo;turn on the MCP&rdquo; mean the same action.</p>
+        <p>Connectors let Claude access and act in your other tools &mdash; like searching SharePoint, reading your Outlook inbox, or updating an Airtable base.</p>
         <div class="example"><div class="example-label">Example</div>"Find all emails from last week about the product launch and summarize the key decisions."</div>
         <div class="chips">
           <div class="chip"><i class="ti ti-brand-slack"></i>Slack</div>
@@ -484,7 +486,7 @@
       </div>
       <div class="section"><h2>How to add a connector</h2>
         <div class="steps">
-          <div class="step">Open <strong>Settings &rarr; Customize &rarr; Connectors</strong>, then click <strong>Add</strong> &rarr; <strong>Browse connectors</strong>.</div>
+          <div class="step">Open <strong>Settings &rarr; Connectors (under Customize)</strong>, then click <strong>Add</strong> &rarr; <strong>Browse connectors</strong>.</div>
           <div class="step">Browse available connectors and click "Connect."</div>
           <div class="step">Authorize access in the popup.</div>
           <div class="step">Start using it &mdash; just mention the app in your prompt.</div>
@@ -662,7 +664,7 @@
       <div class="section"><h2>First time? Activate your connectors</h2>
         <div class="tip tip-navy"><strong>Ask Takanock reads live company sources through connectors &mdash; and connectors are per-user.</strong> If answers come back empty or generic, this is why.</div>
         <div class="steps">
-          <div class="step">In Claude, open <strong>Settings &rarr; Customize &rarr; Connectors</strong> &rarr; <strong>Add</strong> &rarr; <strong>Browse connectors</strong>.</div>
+          <div class="step">In Claude, open <strong>Settings &rarr; Connectors (under Customize)</strong> &rarr; <strong>Add</strong> &rarr; <strong>Browse connectors</strong>.</div>
           <div class="step">Enable the Takanock connectors you see there (Airtable, SharePoint, Takanock-project).</div>
           <div class="step">Ask again &mdash; e.g. <em>"What AI agents do we have and how do I use them?"</em> It reads the live AI Catalogue and answers with what's actually deployed.</div>
         </div>
@@ -682,7 +684,7 @@
       <div class="section">
         <p style="margin-bottom:1.5rem">Follow these steps to submit an automation request using the <strong>/automation-intake</strong> skill in Claude.</p>
         <div class="intake-step"><div class="intake-num">1</div><div><div class="intake-title">Type / in the message box</div><div class="intake-body">In Claude Chat, type <strong>/</strong> in the message box to see your available skills, then pick <strong>/automation-intake</strong>. (You can also just describe your request in plain language &mdash; the skill applies when it's relevant.)</div></div></div>
-        <div class="intake-step"><div class="intake-num">2</div><div style="width:100%"><div class="intake-title">Don't see it?</div><div class="intake-body">Skills live under <strong>Settings &rarr; Customize &rarr; Skills</strong> (tabs: All / Personal / Shared / Organization). If a skill isn't showing, find it there and add it &mdash; org skills appear automatically for everyone.</div></div></div>
+        <div class="intake-step"><div class="intake-num">2</div><div style="width:100%"><div class="intake-title">Don't see it?</div><div class="intake-body">Skills live under <strong>Settings &rarr; Skills (under Customize)</strong> (tabs: All / Personal / Shared / Organization). If a skill isn't showing, find it there and add it &mdash; org skills appear automatically for everyone.</div></div></div>
         <div class="intake-step"><div class="intake-num">3</div><div><div class="intake-title">Follow the intake process</div><div class="intake-body">Claude will guide you through the process <strong>step by step</strong>. Describe your automation request in detail &mdash; what triggers it, what systems are involved, and what the output should look like.</div></div></div>
         <div class="intake-step"><div class="intake-num">4</div><div><div class="intake-title">Request submitted to Airtable</div><div class="intake-body">Claude automatically sends your request to the <strong>AI Workstream Tracker</strong> in Airtable. Ivan and the AI team will have access and will begin building the automation.</div></div></div>
         <div class="tip tip-navy"><strong>The more detail the better.</strong> The clearer your request &mdash; triggers, systems involved, desired output &mdash; the faster the team can build it for you.</div>
@@ -717,14 +719,14 @@
     <div class="page" id="page-skills">
       <div class="page-header"><span class="tag tag-company">Takanock</span><h1>Company Skills</h1><p>Takanock-specific Claude skills published for everyone. Many apply automatically the moment you ask for what they do &mdash; you can also invoke one explicitly by typing <strong>/</strong> and the skill name in Claude Chat.</p></div>
       <div class="section"><h2>Where your skills live &amp; how to turn one on</h2>
-        <p>All your skills &mdash; company ones, Anthropic's built-ins, and any you've added &mdash; live under <strong>Settings &rarr; Customize &rarr; Skills</strong>. That panel has four tabs:</p>
+        <p>All your skills &mdash; company ones, Anthropic's built-ins, and any you've added &mdash; live under <strong>Settings &rarr; Skills (under Customize)</strong>. That panel has four tabs:</p>
         <div class="card-grid">
           <div class="card" style="cursor:default"><i class="ti ti-list"></i><h3>All</h3><p>Everything available to you, in one list.</p></div>
           <div class="card" style="cursor:default"><i class="ti ti-user"></i><h3>Personal</h3><p>Skills you added or created yourself.</p></div>
           <div class="card" style="cursor:default"><i class="ti ti-users"></i><h3>Shared</h3><p>Skills a teammate shared with you.</p></div>
           <div class="card" style="cursor:default"><i class="ti ti-building"></i><h3>Organization</h3><p>Published for all of Takanock &mdash; these appear automatically, nothing to add.</p></div>
         </div>
-        <div class="tip tip-navy"><strong>To use one:</strong> just type <strong>/</strong> in the message box and pick it &mdash; or simply ask for what it does and it applies on its own. <strong>Don't see a skill you were told about?</strong> Open <strong>Settings &rarr; Customize &rarr; Skills</strong>, browse or search, and add it. Org skills are already there for everyone.</div>
+        <div class="tip tip-navy"><strong>To use one:</strong> just type <strong>/</strong> in the message box and pick it &mdash; or simply ask for what it does and it applies on its own. <strong>Don't see a skill you were told about?</strong> Open <strong>Settings &rarr; Skills (under Customize)</strong>, browse or search, and add it. Org skills are already there for everyone.</div>
       </div>
       <div class="section"><h2>/takanock-branding</h2>
         <div class="tip tip-navy"><strong>/takanock-branding</strong> (formerly /takanock-slides) makes any deliverable fully on-brand &mdash; decks, Word docs, reports, one-pagers — official template, colors, fonts, logos, and messaging. <strong>You usually don't need to invoke it:</strong> it applies automatically whenever you ask Claude for Takanock slides, a deck, or a branded document. Just ask for what you need; say so if you want different styling.</div>
@@ -756,7 +758,7 @@
         <h3>How to invoke it</h3>
         <div class="steps">
           <div class="step">Click the <strong>"plus" icon</strong> in the Claude Chat text box &rarr; hover over Skills &rarr; select <strong>/automation-intake</strong>.</div>
-          <div class="step">Don't see it? Skills live under <strong>Settings &rarr; Customize &rarr; Skills</strong> &mdash; find /automation-intake there and add it.</div>
+          <div class="step">Don't see it? Skills live under <strong>Settings &rarr; Skills (under Customize)</strong> &mdash; find /automation-intake there and add it.</div>
           <div class="step">Claude will guide you through the intake process step by step. The more detail you provide, the faster the team can build it.</div>
         </div>
         <div class="example"><div class="example-label">Full walkthrough</div>See the <strong>AI 101: Automation Intake</strong> tab under Takanock Resources for the complete step-by-step guide.</div>
@@ -782,7 +784,7 @@
           <div class="card"><i class="ti ti-school"></i><h3>learn</h3><p>Turns a topic into a guided, interactive lesson &mdash; handy for getting up to speed on something new.</p></div>
           <div class="card"><i class="ti ti-wand"></i><h3>skill-creator</h3><p>Helps you build your own skill. If you keep giving Claude the same instructions, this turns them into a reusable one.</p></div>
         </div>
-        <div class="tip tip-navy"><strong>Recommended: set up your <em>morning</em> briefing.</strong> Ask Claude for <em>"my morning briefing"</em> to try it once, then <em>"set this up as a recurring task every weekday at 8am"</em> so it's waiting for you each morning. It needs your <strong>Microsoft 365 connector</strong> on (Settings &rarr; Customize &rarr; Connectors) to read your calendar and inbox &mdash; switch that on first, or the briefing comes back empty.</div>
+        <div class="tip tip-navy"><strong>Recommended: set up your <em>morning</em> briefing.</strong> Ask Claude for <em>"my morning briefing"</em> to try it once, then <em>"set this up as a recurring task every weekday at 8am"</em> so it's waiting for you each morning. It needs your <strong>Microsoft 365 connector</strong> on (Settings &rarr; Connectors, under Customize) to read your calendar and inbox &mdash; switch that on first, or the briefing comes back empty.</div>
       </div>
     </div>
     <div class="page" id="page-support">
@@ -1115,7 +1117,7 @@ The hub has these pages and IDs:
 - memory: How Claude remembers - the context/persistence model. Explains the difference between personal instructions, Memory, Project instructions, and a single chat, and how to view or clear Memory in Settings > Capabilities. Route here for any question about whether/how Claude remembers things across chats.
 - asktakanock: internal AI knowledge base trained on Takanock docs and policies
 - ai101: how to submit an automation request using /automation-intake skill
-- skills: org-published (available to everyone) = /takanock-branding, /feasibility-analysis, /automation-intake, /schedule-slide. Finance/schedule extras (/finance-slide-deck, /pdf-schedule-sync) exist and may need adding via Settings > Customize > Skills. For IT/data requests, point to the IT Help Desk app / IT Slack channel, not a skill. If a skill isn't showing, tell them to open Settings > Customize > Skills and add it.
+- skills: org-published (available to everyone) = /takanock-branding, /feasibility-analysis, /automation-intake, /schedule-slide. Finance/schedule extras (/finance-slide-deck, /pdf-schedule-sync) exist and may need adding via Settings > Skills (under Customize). For IT/data requests, point to the IT Help Desk app / IT Slack channel, not a skill. If a skill isn't showing, tell them to open Settings > Skills (under Customize) and add it.
 - help: this chat assistant page (current page)
 - support: Questions & Support &mdash; contact page (Ivan Benavides, AI Lead; Friday Office Hours; plus /automation-intake and /it-help-desk). Use this when the question is outside the hub's scope.
 
